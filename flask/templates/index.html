@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Manager</title>
+</head>
+
+<body>
+    <div id="backup">Backup your passwords</div>
+    <div id="restore">Restore your passwords</div>
+
+    <p id="status">Status:</p>
+</body>
+
+<script>
+    var backup = document.getElementById("backup")
+    var restore = document.getElementById("restore")
+    backup.onclick = function () {
+        console.log("backup")
+        fetch("./backup").then(res => res.text()).then(data => {
+            console.log(data)
+            document.getElementById("status").innerHTML = "Status: " + data
+        })
+    }
+    restore.onclick = function () {
+        console.log("restore")
+        fetch("./restore").then(res => res.text()).then(data => {
+            console.log(data)
+            document.getElementById("status").innerHTML = "Status: " + data
+        })
+    }
+</script>
+
+<style>
+    * {
+        font-family: Arial, Helvetica, sans-serif;
+        margin: 10px;
+    }
+    #backup {
+        background-color: green;
+        color: white;
+        padding: 10px;
+        border-radius: 5px;
+        cursor: pointer;
+        width: fit-content;
+    }
+
+    #restore {
+        background-color: red;
+        color: white;
+        padding: 10px;
+        border-radius: 5px;
+        cursor: pointer;
+        width: fit-content;
+    }
+</style>
+
+
+</html>
